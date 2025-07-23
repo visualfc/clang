@@ -6,7 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/goplus/lib/c"
-	"github.com/goplus/lib/c/clang"
+	"github.com/visualfc/clang"
 )
 
 type Context struct {

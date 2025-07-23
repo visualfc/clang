@@ -2645,6 +2645,10 @@ func (l SourceLocation) Offset() (ret c.Uint) {
 	return
 }
 
+// llgo:link SourceLocation.PresumedLocation C.clang_getPresumedLocation
+func (l SourceLocation) PresumedLocation(filename *String, line, column *c.Uint) {
+}
+
 /**
  * Retrieve a source location representing the first character within a
  * source range.
