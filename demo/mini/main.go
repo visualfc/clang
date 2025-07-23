@@ -86,7 +86,7 @@ func main() {
 	tu := index.ParseTranslationUnit(sourceFile, nil, 0, nil, 0, 0)
 
 	root := tu.Cursor()
-	println(tu, root.Kind, root.xdata)
+	println(tu, root.Kind, root.xdata, root.data[0], root.data[1], root.data[2])
 	VisitChildren(root, visitChildrenCallback, nil)
 }
 
