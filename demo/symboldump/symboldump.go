@@ -110,6 +110,7 @@ func printFuncInfo(cursor clang.Cursor) {
 }
 
 func visit(cursor, parent clang.Cursor, clientData c.Pointer) clang.ChildVisitResult {
+	println("======> visit")
 	switch cursor.Kind {
 	case clang.CursorMacroDefinition:
 		printMarcoInfo(cursor)
@@ -156,6 +157,7 @@ func parse(filename *c.Char) {
 	context.setUnit(unit)
 	cursor := unit.Cursor()
 
+	println("======> VisitChildren")
 	clang.VisitChildren(cursor, visit, nil)
 	unit.Dispose()
 	index.Dispose()
