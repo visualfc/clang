@@ -7,6 +7,7 @@ import (
 )
 
 const (
+	LLGoFiles   = "$(llvm-config --cflags): wrap/wrap.cpp"
 	LLGoPackage = "link: -L$(llvm-config --libdir) -lclang; -lclang"
 )
 
@@ -68,6 +69,9 @@ func VisitChildren(
 	return
 }
 
+//go:linkname visitChildrenCallback C.visitChildrenCallback
+func visitChildrenCallback(cursor, parent Cursor, clientData ClientData) c.Int
+
 func visit(cursor, parent Cursor, clientData ClientData) c.Int {
 	println("visit", cursor.Kind, parent.Kind)
 	return 0
@@ -83,7 +87,7 @@ func main() {
 
 	root := tu.Cursor()
 	println(tu, root.Kind, root.xdata)
-	VisitChildren(root, visit, nil)
+	VisitChildren(root, visitChildrenCallback, nil)
 }
 
 // func parse(filename *c.Char) {
